@@ -25,7 +25,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     -webkit-animation-iteration-count: infinite;
     animation-iteration-count: infinite;
   }
-
+  
   .animate__pulse {
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
@@ -99,5 +99,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   background-color: transparent;
   color:white;
   text-decoration: none;
-  transform: scale(1.1);
+ 
+  animation: animateScale 0.5s ease-out forwards ;
+}
+@keyframes animateScale {
+
+  0%{
+    transform: scale(1);
+    
+  }
+
+  100%{
+    transform: scale(1.1);
+  }
+
 }

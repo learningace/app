@@ -8,6 +8,7 @@ import { MatAnchor } from '@angular/material/button';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  searchBar:boolean=false;
   color:string ="white";
   constructor(private title :SetTitleService) { 
     this.title.setTitle("LearningAce | Home ")
@@ -18,6 +19,7 @@ export class HomeComponent {
     styles.color="white";
     styles.textDecoration="none";
     styles.backgroundColor="darkblue";
+    console.log(styles);
   
   }
   onHoverLeave(el : MatAnchor){

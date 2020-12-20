@@ -1,38 +1,24 @@
-<!-- <div class="container">
-  <h1 class="font-pacifico" 
-    style="font-size: 60px; padding: 20px;">
-    LearningAce
-  </h1>
-  <a mat-flat-button routerLink="/login" 
-    class="text-primary"
-    style="text-decoration: none; font-size: large;">
-    Login
-  </a> |
-  <a mat-flat-button routerLink="/signup"
-    class="text-primary" 
-    style="text-decoration: none; font-size: large;">
-    Sign Up
-  </a>  |
-  <a mat-flat-button routerLink="/student/view/profile"
-  class="text-primary" 
-  style="text-decoration: none; font-size: large;">
-  Student Profile
-</a> |
-<a mat-flat-button routerLink="/signup/success/welcome"
-  class="text-primary" 
-  style="text-decoration: none; font-size: large;">
-  Sign Up Success
-</a> 
-</div> -->
-
-<mat-toolbar color="primary" class="fixed" class="mat-elevation-z4  ">
+<mat-toolbar color="primary" class="mat-elevation-z4 " *ngIf="!searchBar">
   <mat-toolbar-row>
-    <a routerLink="/" #l class="font-pacifico-white no-hover-effect" (mouseover)="log(l)">
-      
-      <span style="font-size: xx-large; padding: 15px;">LearningAce </span> 
-    </a>|
-    <span class="mr-3"></span>
-    <div fxHide.lt-xs fxHide.xs
+    <a routerLink="/"  
+      class="font-pacifico-white no-hover-effect" 
+      ngClass.sm="text-center w-100"
+      ngClass.lt-sm="text-center w-100">
+      <span style="font-size: xx-large; padding: 15px;"[style.marginLeft.px.xs]="54">LearningAce </span> 
+    </a> <span fxHide.lt-sm fxHide.sm>|</span>
+    <span class="mr-3" ></span>
+    <button 
+      class="no-hover-effect"
+      (click)="searchBar=!searchBar"
+      mat-icon-button
+      fxLayoutAlign="end"
+      fxHide.gt-sm 
+      fxShow.sm
+      title="Search"
+      fxShow.lt-sm>
+      <mat-icon>search</mat-icon>
+    </button>
+    <div fxHide.lt-sm fxHide.sm
       fxLayout="row" 
       fxLayoutAlign="space-around"
       style="clear: both;"
@@ -50,8 +36,38 @@
           #search="ngModel">
       </mat-form-field>
       <div
+        fxHide.lt-sm
+        fxHide.sm
         fxLayoutAlign="center center">
         <a mat-button
+          class="no-hover-effect"
+          #link1
+          (mouseover)="onHover(link1)"
+          (mouseout)="onHoverLeave(link1)"
+          [routerLink]="'/login'">
+        <mat-icon class="mr-1">account_box</mat-icon> 
+        Login 
+      </a>
+      <a mat-button
+        #link2
+        class="no-hover-effect"
+        (mouseover)="onHover(link2)"
+        (mouseout)="onHoverLeave(link2)" 
+        [routerLink]="'/signup'"> 
+        <mat-icon class="mr-1">person_add</mat-icon> 
+        Sign Up
+      </a>
+      </div>
+    </div>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row  fxHide.gt-sm fxShow.sm >
+    <div
+      class="w-100"
+      fxLayout="row"
+      fxLayoutAlign.xs="center"
+      fxLayoutAlign.sm="start">
+      <a mat-button
         class="no-hover-effect"
         #link1
         (mouseover)="onHover(link1)"
@@ -69,10 +85,46 @@
         <mat-icon class="mr-1">person_add</mat-icon> 
         Sign Up
       </a>
-      </div>
     </div>
   </mat-toolbar-row>
-
-  <mat-toolbar-row fxLayout="row" fxHide.gt-sm fxShow.sm>sjdbfksjbdfkjbsdkfjb</mat-toolbar-row>
 </mat-toolbar>
 
+<mat-toolbar color="primary" class="fixed" class="mat-elevation-z4 " 
+  *ngIf="searchBar">
+  <mat-form-field 
+    class="w-100 p-1"
+    [style.fontSize.px]="16" 
+    appearance="standard">
+    <mat-icon matSuffix title="Search">search</mat-icon>
+    <input matInput
+      type="text"
+      name="search" 
+      ngModel
+      placeholder="Search for anything"
+      #search="ngModel">
+  </mat-form-field>
+  <button 
+    class="no-hover-effect"
+    (click)="searchBar=!searchBar"
+    mat-icon-button>
+    <mat-icon title="Close Search Bar">close</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="container-fluid mt-2" >
+  <div class="row">
+    <div class="col-md-6 d-flex align-items-center">
+      <div class="display-1">
+        Take an ace step
+      </div>
+    </div>
+    <div class="col-md-6">
+      <img class="img-fluid" 
+        src="../../assets/illustration-22.jpg" 
+        alt="Illustration">
+    </div>
+  </div>
+</div>
+  
+      
+    

@@ -4,7 +4,7 @@
     color = "#000000" 
     type = "ball-climbing-dot" 
     [fullScreen] = "false">
-       <h6 style="color: black;"> Loading...</h6>
+   <h6 style="color: black;"> Loading...</h6>
 </ngx-spinner>
 <div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
   <mat-card 
@@ -18,7 +18,7 @@
       ngClass.xs="mat-elevation-z0">
     <mat-card-header >
       <mat-card-title class="font-pacifico">
-        <a routerLink="/"> LA</a>
+        <a routerLink="/"> LearningAce</a>
       </mat-card-title>
       <mat-card-title class="font-noto">Login</mat-card-title>
     </mat-card-header>
@@ -69,8 +69,7 @@
         </mat-form-field>
 
         <mat-checkbox class="ml-1" 
-          (change)="hide = !hide"
-          [disabled]="password.invalid">
+          (change)="hide = !hide">
           Show Password
         </mat-checkbox>
       <hr>      
