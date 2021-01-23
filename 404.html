@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+    .loader{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+    }
+    .loading-text{
+      font-weight: bolder;
+      font-size: xx-large;
+      animation: fade-in 1s linear infinite;
+    }
+    @keyframes fade-in {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      50%{
+      -webkit-transform: scale(1.1);
+      transform: scale(1.1);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      } 
+    }
+    @-webkit-keyframes fade-in {
+      0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      }
+      50%{
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+      }
+      100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+      } 
+    }
+  </style>
+  <meta charset="utf-8">
+  <title>LearningAce</title>
+  <base href="https://learningace.github.io/app/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <noscript><h1 class=" w-100 text-white text-center bg-danger display-1">
+    JavaScript Disabled <br> Enable JavaScript to view this site</h1></noscript> -->
+<link rel="stylesheet" href="styles.fa207efed9afc6b27ead.css"></head>
+ <body> <!-- class="mat-typography" -->
+  <app-root>
+    <div class="loader">
+        <div class="loading-text">Loading ...</div>
+    </div>
+  </app-root> 
+<script src="runtime.98430c385b8daee974c1.js" defer></script><script src="polyfills.8c151b8375e767ff858f.js" defer></script><script src="main.d56dafe5f9d00c0dafed.js" defer></script></body>
+</html>
