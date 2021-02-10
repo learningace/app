@@ -1,23 +1,42 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from "@angular/router";
 
+import { QuicklinkStrategy } from 'ngx-quicklink';
 import { HomeComponent } from './home/home.component';
-import { StudentProfileComponent } from './students/student-profile/student-profile.component';
-import { SignSuccessComponent } from './join/sign-up/sign-success/sign-success.component';
-import { LoginComponent } from './join/login/login.component';
-import { SignUpComponent } from './join/sign-up/sign-up.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
-  {path : '', component : HomeComponent, pathMatch:'full'},
-  {path : 'login', component : LoginComponent},
-  {path : 'signup', component : SignUpComponent},
-  {path : 'student/view/profile', component : StudentProfileComponent},
-  {path : 'signup/success/welcome', component : SignSuccessComponent},
-
+  // {
+  //   path: 'docs',
+  //   loadChildren: () => import('./docs/docs.module').then((m) => m.DocsModule),
+  // },
+  {
+    path: 'join',
+    loadChildren: () => import('./join/join.module').then((m) => m.JoinModule),
+  },
+  // {
+  //   path: 'lecture',
+  //   loadChildren: () =>
+  //     import('./lecture/lecture.module').then((m) => m.LectureModule),
+  // },
+  // {
+  //   path: 'course',
+  //   loadChildren: () =>
+  //     import('./course/course.module').then((m) => m.CourseModule),
+  // },
+  // {
+  //   path: 'instructor',
+  //   loadChildren: () =>
+  //     import('./instructor/instructor.module').then((m) => m.InstructorModule),
+  // },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: QuicklinkStrategy }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,0 +1,31 @@
+<app-header 
+  [background]="'light-gray'"
+  [type]="'horizontal'"
+  [elevation]="true"
+  [stackable]="true">
+  
+  <a routerLink="/" 
+    routerLinkActive="ui-border-black ui-bottombar"
+    [routerLinkActiveOptions]="{exact : true}" 
+    class="ui-button">
+    Home
+  </a>
+
+  <a routerLink="/docs" 
+    routerLinkActive="ui-border-black ui-bottombar" 
+    [routerLinkActiveOptions]="{exact : true}"
+    class="ui-button">
+    Introduction
+  </a>
+
+  <a routerLink="srs" 
+    routerLinkActive="ui-border-black ui-bottombar" 
+    class="ui-button">
+    SRS Document
+  </a>
+</app-header>
+<div class="ui-container">
+  <router-outlet></router-outlet>
+</div>
+
+

@@ -1,0 +1,184 @@
+<div class="ui-container d-flex justify-content-center w-100 h-100">
+  <div class="ui-card-4 ui-padding-24 ui-round ui-white">
+    <header class="ui-container d-flex justify-content-center">
+      <a routerLink="/">
+        <img src="https://learningace.github.io/app/assets/logo4.png" alt="LearningAce" />
+      </a>
+      <label class="ui-xlarge">Create An Account</label>
+      <div style="margin-bottom: 10px;"></div>
+    </header>
+
+    <div class="ui-container">
+      <form
+        (ngSubmit)="register(RGform)"
+        #RGform="ngForm"
+      >
+      <div class="name-block">
+        <div class="first-name">
+          <label>
+            First Name <sup class="ui-text-red">*</sup></label>
+          <input
+            class="ui-input"
+            type="text"
+            name="first_name"
+            required
+            ngModel
+            #first_name="ngModel"
+            pattern="[A-Za-z ]{1,32}"
+          />
+          <div
+            class="ui-text-red ui-small"
+            *ngIf="first_name.errors?.required && first_name.touched">
+            First name is required
+          </div>
+          <div 
+            class="ui-text-red ui-small"
+            *ngIf="first_name.errors?.pattern && first_name.touched">
+            Name should be letters only and max length is 32 characters
+          </div>
+        </div>
+
+        <div class="last-name">
+          <label>
+            Last Name</label>
+          <input
+            class="ui-input"
+            type="text"
+            name="last_name"
+            ngModel
+            #last_name="ngModel"
+            
+          />
+        </div>
+      </div>
+
+        <div style="margin-bottom: 10px;"></div>
+
+        <div>
+          <label>
+            Enter Your Email <sup class="ui-text-red">*</sup></label>
+          <input
+            class="ui-input"
+            type="email"
+            name="email"
+            required
+            ngModel
+            #email="ngModel"
+            email
+          />
+          <div
+            class="ui-text-red ui-small"
+            *ngIf="email.errors?.required && email.touched">
+            Email is required
+          </div>
+          <div 
+            class="ui-text-red ui-small"
+            *ngIf="email.errors?.email && email.touched">
+            Please enter a valid Email address
+          </div>
+        </div>
+        <div style="margin-bottom: 10px;"></div>
+
+      <div class="name-block">
+        <div class="first-name">
+          <label>
+            Choose a password <sup class="ui-text-red">*</sup></label>
+          <input
+            required
+            name="password"
+            class="ui-input"
+            [type]="hide ? 'password' : 'text'"
+            ngModel
+            #password="ngModel"
+            minlength="6"
+            (input)="checkPassword(password.value, confirm_password.value)"
+          />
+          <div
+            class="ui-text-red ui-small"
+            *ngIf="password.errors?.required && password.touched">
+            Password is required
+          </div>
+          <div 
+            class="ui-text-red ui-small"
+            *ngIf="password.errors?.minlength && password.touched">
+            Password should be atleast 6 characters
+          </div>
+        </div>
+
+        <div class="last-name">
+          <label>
+            Confirm your password <sup class="ui-text-red">*</sup></label>
+          <input
+            required
+            name="confirm_password"
+            class="ui-input"
+            [type]="hide ? 'password' : 'text'"
+            ngModel
+            #confirm_password="ngModel"
+            minlength="6"
+            (input)="checkPassword(password.value, confirm_password.value)"
+          />
+          <div
+            class="ui-text-red ui-small"
+            *ngIf="confirm_password.errors?.required && confirm_password.touched">
+            Confirm Password is required
+          </div>
+          <div 
+            class="ui-text-red ui-small"
+            *ngIf="confirm_password.errors?.minlength && confirm_password.touched">
+            Password should be atleast 6 characters
+          </div>
+          <div 
+            class="ui-text-red ui-small"
+            *ngIf="confrmPasswordError && confirm_password.touched">
+            Passwords don't match
+          </div>
+        </div>
+      </div>
+      
+      <div style="margin-bottom: 10px;"></div>
+      <input class="ui-check"
+        style="margin-right: 10px;"
+        (change)="hide = !hide" 
+        type="checkbox"> Show Password
+      </form>
+    </div>
+    <br>
+    <footer class="ui-container ui-footer">
+      <button
+        class="ui-btn ui-ripple ui-round ui-text-primary" 
+        (click)="onSwitch()"
+        title="Sign In to your account">
+        Sign In Instead 
+      </button>
+      
+      <button
+        (click)="register(RGform)"
+        class="ui-btn ui-color-primary pull-right ui-round ui-text-white" 
+        
+        type="submit" 
+        >
+        Register
+      </button>
+    </footer>
+  </div>
+  <div class="ui-container">
+    {{formValue | json}}
+  </div>
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+
+            
+ 
+

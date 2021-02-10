@@ -1,0 +1,31 @@
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.glyphicon-plus-sign:before {
+  content: "\e081";
+}
+.glyphicon-plus:before {
+  content: "\002b";
+}
+.box{
+    border-radius: 20px;
+    transition: ease 0.5s;
+    transition-property: all;
+}
+.box:hover{
+    box-shadow: 0 1px 5px 1px #006089;
+    -webkit-transform:scale(1.05);
+    transform:scale(1.05);
+    -moz-transform:scale(1.05);
+    -o-transform:scale(1.05);
+}

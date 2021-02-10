@@ -1,0 +1,163 @@
+<!-- <app-header
+  [background]="'light-gray'"
+  [type]="'horizontal'"
+  [elevation]="true"
+  [stackable]="true"
+>
+  <header style="cursor: pointer;">
+    <img
+      routerLink="/"
+      src="../../../assets/logo4.png"
+      alt="LearningAce logo"
+      width="150px"
+      style="margin-right: 20px"
+      style="padding-left: 10px"
+    />
+  </header>
+   <div class="ui-button"> Step {{currentStep}} of {{ maxStep }}</div>
+</app-header> -->
+<div class="container">
+  <!-- Help Text Section -->
+  <div class="display-4" 
+    *ngIf='currentStep==1' 
+    style="font-size: xx-large; margin-bottom: 20px; width: 100%; text-align: center;">
+    First let's find out what type of course you are making
+  </div>
+
+  <div class="display-4" 
+    *ngIf='currentStep==2' 
+    style="font-size: xx-large; margin-bottom: 20px; width: 100%; text-align: center;">
+    How about a working title for the course
+  </div>
+
+   <div
+    class="display-4"
+    style="font-size: xx-large; margin-bottom: 20px; width: 100%; text-align: center;" 
+    *ngIf='currentStep==3'>
+      What category best fits the knowledge you will share
+    </div>
+  <!-- Card -->
+  <div class="card shadow rounded"
+    [ngClass]="{'w-100':currentStep == 1,'w-50':currentStep !=1}">
+    <div class="card-header" 
+      *ngIf="stepsConfig[currentStep].showHeader">
+      <span *ngIf='currentStep==1'>
+        Select a course type : {{ courseProperty.type | titlecase }}
+      </span>
+      <span *ngIf='currentStep==2'>
+        Give your course a title : {{ courseProperty.name | titlecase }}
+      </span>
+    </div>
+    <!-- Step 1 (one) -->
+    <div
+      *ngIf="currentStep==1"
+      style="display: flex; flex-direction: row; justify-content: space-around;flex-wrap: wrap;" >
+      <!-- Content based course type tile -->
+        <div
+          [ngClass]="{ selected: courseProperty.type == 'CONTENT' }"
+          (click)="addCourseProperty('CONTENT','type')"
+          style="width: 200px; height: 200px; margin: 20px; cursor: pointer; 
+            padding: 10px; text-align: center;"
+          class="ui-card-4 d-flex justify-content-center box">
+          <span style="font-size: larger;">Content Based</span>
+          <small>Create rich learning experience with help of lecture, 
+            queries, assesments 
+          </small>
+        </div>
+      <!-- Virtual classroom course type tile -->    
+        <div
+          [ngClass]="{ selected: courseProperty.type == 'VIRTUAL' }"
+          (click)="addCourseProperty('VIRTUAL','type')"
+          style="width: 200px; height: 200px; margin: 20px; cursor: pointer;
+             padding: 10px; text-align: center;"
+          class="ui-card-4 d-flex justify-content-center box">
+          <span style="font-size: larger;">Virtual Classroom</span>
+          <small>Conduct live classes with your students. Engage in rich live 
+            interactive classes
+          </small>
+        </div>
+      <!-- Practice test course type tile -->
+        <div
+          [ngClass]="{ selected: courseProperty.type == 'PRACTICE' }"
+          (click)="addCourseProperty('PRACTICE','type')"
+          style="width: 200px; height: 200px; margin: 20px; cursor: pointer;
+             padding: 10px; text-align: center;"
+          class="ui-card-4 d-flex justify-content-center box">
+          <span style="font-size: larger;">Practice Test</span>
+          <small>Help students prepare for certifcation exams by providing powerful 
+            practice exercises
+          </small>
+        </div>
+    </div>
+  <!-- Step 2 (two) -->
+    <div
+      *ngIf="currentStep==2"
+        class="m-2">
+        <label >Name :</label>
+        <div class="input-group">
+          <!-- <input
+            [(ngModel)]="courseProperty.name"
+            #courseName='ngModel'
+            class="form-control" 
+            (input)="addCourseProperty(courseName,'name')"
+            type="text"
+            maxlength="60"> -->
+          <div class="input-group-append">
+            <span class="input-group-text">{{nameLeftLength}}</span>
+          </div>
+        </div>
+    </div>
+  <!-- Step 3 (three) -->
+    <div
+      *ngIf="currentStep==3"
+        class="m-2">
+        <label >Select a category : {{courseProperty.category}} </label>
+        <!-- <select class="custom-select"
+          [(ngModel)]='courseProperty.categoryId'
+          #category="ngModel"
+          (change)="addCourseProperty($event,'CATEGORY')">
+          <option value="0">Choose a category</option>
+          <option value="1">Math</option>
+          <option value="2">Science</option>
+          <option value="3">Physics</option>
+          <option value="4">Chemistry </option>
+          <option value="5">Biology</option>
+          <option value="6">History</option>
+          <option value="7">Business and Management</option>
+          <option value="8">IT and Computer Science</option>
+          <option value="9">Literature</option>
+          <option value="10">Language</option>
+          <option value="11">Law</option>
+          <option value="12">Psychology</option>
+          <option value="13">Creative arts and media</option>
+          <option value="14">Healthcare and medicine</option>
+          <option value="15">Design</option>
+        </select> -->
+    </div>
+  <!-- footer Actions-->
+    <div class="card-footer">
+    <!-- One step back button -->
+      <button
+        *ngIf="currentStep != 1" 
+        (click)="backStep()"
+        class="btn btn-primary float-left">Back
+      </button>
+    <!-- Next step button -->
+      <button
+        *ngIf="currentStep != maxStep" 
+        (click)="nextStep()"
+        [disabled]="!checkValidation()"
+        [title]="getValidationMsg()"
+        class="btn btn-primary float-right">Next
+      </button>
+    <!-- Create Course button -->
+      <button
+        (click) = 'createCourse()'
+        [disabled]="!checkValidation()"
+        [title]="getValidationMsg()"
+        *ngIf="currentStep == maxStep" 
+        class="btn btn-primary float-right">Create Course
+      </button>
+    </div>
+  </div>
+</div>

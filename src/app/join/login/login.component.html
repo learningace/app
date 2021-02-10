@@ -1,118 +1,104 @@
-<ngx-spinner 
-    bdColor = "rgba(255,255,255,1)" 
-    size = "large" 
-    color = "#000000" 
-    type = "ball-climbing-dot" 
-    [fullScreen] = "false">
-   <h6 style="color: black;"> Loading...</h6>
-</ngx-spinner>
-<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
-  <mat-card 
-      class="form-card" 
-      @todoAnimation  
-      fxFlex="33%" 
-      fxFlex.sm="60%" 
-      fxFlex.md="50%" 
-      fxFlex.xs="100%" 
-      ngClass.gt-xs="mat-elevation-z4" 
-      ngClass.xs="mat-elevation-z0">
-    <mat-card-header >
-      <mat-card-title class="font-pacifico">
-        <a routerLink="/"> LearningAce</a>
-      </mat-card-title>
-      <mat-card-title class="font-noto">Login</mat-card-title>
-    </mat-card-header>
-    <hr>
-    <mat-card-content>
-      <form 
-        (ngSubmit)="login(LGform)" 
-        #LGform = ngForm
-        [style.fontSize.px]="16">
-        <mat-form-field 
-          class="w-100" 
-          appearance="outline">
-          <mat-icon @slide matPrefix>email</mat-icon>
-          <mat-label>Enter Your Email</mat-label>
-          <input matInput class="form-field" 
-            type="email"
-            name="email" 
-            required
-            ngModel
-            #email="ngModel"
-            email>
-          <mat-error *ngIf="email.errors?.required">
-            Email is required
-          </mat-error>
-          <mat-error *ngIf="email.errors?.email">
-            Please enter a valid Email address
-          </mat-error>
-        </mat-form-field>
-        
-        <mat-form-field 
-          class="w-100" 
-          appearance="outline" >
-          <mat-label>Enter Your Password</mat-label>
-          <mat-icon @slide matPrefix>vpn_key</mat-icon>
-          <input matInput class="form-field" 
-            required
-            name="password" 
-            [type]="hide ? 'password' : 'text'"
-            ngModel
-            #password="ngModel"
-            minlength="6">
-            <mat-error *ngIf="password.errors?.required">
+<div class="bg-login">
+  <div
+    class="display-flex justify-content-center vw-100 vh-100 align-items-center">
+    <div class="box-shadow-4" style="background-color: white; width: 500px;">
+      <div style="padding-top: 20px"></div>
+      <a class="display-flex justify-content-center w-100" routerLink="/">
+        <img
+          src="https://learningace.github.io/app/assets/logo.png"
+          alt="LearningAce"
+        />
+      </a>
+      <div class="display-flex justify-content-center w-100 font-montserrat font-xx-large">Sign In</div>
+      <div style="margin-bottom: 20px"></div>
+<!-- Email  Field -->
+      <div class="container">
+        <form class="form-style" (ngSubmit)="login(LGform)" #LGform="ngForm">
+          <div class="group">
+            <input
+              [ngClass]="{ 'border-red': email.errors && email.touched }"
+              type="text"
+              name="email"
+              required
+              ngModel
+              #email="ngModel"
+              email/>
+            <label for="name"> <i class="fas fa-envelope mr-2"></i> Enter Your Email</label>
+            <span class="highlight"></span>
+            <span [ngClass]="{ 'border-red': email.errors && email.touched }" class="bar"></span>
+            <span
+              class="helper-text bg-error"
+              *ngIf="email.errors?.email && password.touched">
+              Please enter a valid Email address
+            </span>
+            <span
+              class="helper-text bg-error"
+              *ngIf="email.errors?.required && email.touched">
+              Email is required
+            </span>
+          </div>
+<!-- Password Field -->
+          <div class="group">
+            <input
+              required
+              name="password"
+              [ngClass]="{ 'border-red': password.errors && password.touched }"
+              [type]="hide ? 'password' : 'text'"
+              ngModel
+              #password="ngModel"
+              minlength="6"/>
+            <label for="name"> <i class="fas fa-unlock-alt mr-2"></i> Password</label>
+            <span class="highlight"></span>
+            <span [ngClass]="{ 'border-red': password.errors && password.touched }" class="bar"></span>
+            <div
+              class="helper-text bg-error"
+              *ngIf="password.errors?.required && password.touched">
               Password is required
-            </mat-error>
-            <mat-error *ngIf="password.errors?.minlength">
+            </div>
+            <div
+              class="helper-text bg-error"
+              *ngIf="password.errors?.minlength && password.touched">
               Password should be atleast 6 characters
-            </mat-error>
-        </mat-form-field>
-
-        <mat-checkbox class="ml-1" 
-          (change)="hide = !hide">
-          Show Password
-        </mat-checkbox>
-      <hr>      
-        <mat-card-actions 
-          fxLayout="row" 
-          fxLayoutAlign="space-around">
-
-          <button mat-flat-button
-            fxFlexOrder="0"
-            style="color: #1a73e8;"
-            class="text-center"
-            type="button"
-            (click)="onSwitch()"
-            title="Create an account on LearningAce">
-            Create An Account
-          </button> 
-
-          <button mat-raised-button 
-            style="margin-left: 0px; margin-right: 0px;"
-            fxFlexOrder="1"
-            class="text-center"
-            color="primary" 
-            type="submit"
-            [disabled]="LGform.invalid"
-            [title]="'Your form is ' +  LGform.status | titlecase"
-            matRipple>
-            Log In
+            </div>
+          </div>
+          <div style="margin-bottom: 20px"></div>
+<!-- Show password Checkbox -->
+          <input
+            style="margin-right: 10px"
+            (change)="hide = !hide"
+            type="checkbox"/>
+            <span class="font-montserrat">Show Password</span> 
+<!-- Forgot Password button   -->
+          <button
+            style="float: right; margin-bottom: 20px; margin-top: -10px;"
+            class="button button-clear"
+            [disabled]="email.errors?.required"
+            (click)="onForgotPassword()">
+            Forgot Password?
           </button>
-        </mat-card-actions>
-      </form>
-    </mat-card-content>
-  </mat-card>
-</div>
-
-<ul class="circles">
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul>
+        </form>
+      </div> <!-- Form container div-->
+      <br />
+<!-- Action Footer -->
+      <footer class="container mb-4">
+        <button
+          style="line-height: 3px;" 
+          class="button button-clear"
+          title="Create An Account on LearningAce"
+          (click)="onSwitch()">
+          Not registered yet?<p></p>
+          Create an account here
+        </button> <!-- Switch Button -->
+        <button
+           style="float: right;"
+          (click)="login(LGform)"
+          class="button"
+          type="submit"
+          [disabled]="LGform.invalid || submitDisabled">
+          <span class="loader" *ngIf="loading"></span>
+          <Span *ngIf="!loading">Sign In</Span>
+        </button> <!-- Login Submit Button -->
+      </footer>
+    </div> <!-- Form Box-->
+  </div> <!-- Form Box Wrapper Div-->
+</div> <!-- login Backgroung image div-->

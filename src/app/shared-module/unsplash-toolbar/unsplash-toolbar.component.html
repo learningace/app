@@ -1,0 +1,64 @@
+<!-- <h2 mat-dialog-title>Search for the photo</h2>
+<div class="input-group">
+  <input
+    ngModel
+    #searchKey="ngModel"
+    type="text"
+    class="form-control"
+    required
+  />
+  <span class="append">
+    <button
+      [disabled]="searchKey.invalid"
+      class="btn btn-light"
+      (click)="getPhotosByKey(searchKey.value)"
+    >
+      Search
+    </button>
+  </span>
+</div>
+<div>Pages {{ currentPage }} of {{ totalPages }}</div>
+
+<mat-dialog-content
+  class="mat-typography"
+  style="min-height: 60vh; min-width: 80vw"
+>
+  <div
+    style="
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    "
+  >
+    <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+    <div *ngIf="loading" class="lds-dual-ring"></div>
+    <ng-container *ngIf="imageResults">
+      <div class="card shadow m-1" *ngFor="let item of imageResults">
+        <img
+          class="image-fluid"
+          [src]="item.url"
+          [alt]="item.alt_description"
+        />
+      </div>
+    </ng-container>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button
+    class="btn btn-primary mr-5"
+    [disabled]="searchKey.invalid"
+    (click)="backPage()"
+  >
+    Back
+  </button>
+  <button
+    class="btn btn-primary mr-5"
+    [disabled]="searchKey.invalid"
+    (click)="nextPage()"
+  >
+    Next
+  </button>
+  <button class="btn btn-light" mat-dialog-close>Cancel</button>
+</mat-dialog-actions> -->

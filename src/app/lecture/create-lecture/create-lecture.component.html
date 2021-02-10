@@ -1,0 +1,13 @@
+<div class="w-100" style="text-align: center">
+  <label style="font-size: x-large">Create Your Lecture</label>
+</div>
+<div class="ui-container" style="margin-top: 20px">
+  <div id="editor-js"></div>
+  <button 
+    (click) = 'generate()'
+    class="ui-btn ui-color-primary ui-round ui-text-white">
+    Generate Output
+  </button>
+  {{output| json}}
+</div>
+

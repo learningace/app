@@ -1,23 +1,136 @@
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color:white;
-    opacity: 1; /* Firefox */
-    text-align: center;
-    text-transform: capitalize;
-    font-size: larger;
-  }
+.bgimg-1 {
+  background-image: url(../../assets/illustration.jpg);
+  height: 89.5vh;
+  margin-top: -24px;
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.intro-card {
+  padding: 20px;
+  margin: 20px;
+}
+.intro-card-title {
+  text-transform: uppercase;
+  background-color: white;
+  color: black;
+  opacity: 0.8;
+  font-family: "Rubik", sans-serif;
+  font-size: 3.5rem;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.intro-card-body {
+  font-size: 1.3rem;
+  font-family: "Nunito", sans-serif;
+}
+.caption {
+  padding: 20px;
+  text-transform: capitalize;
+  background-color: lightgrey;
+  color: black;
+  mix-blend-mode: soft-light;
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+  font-size: 3rem;
+}
+.footer{
+  background-color: lightgrey;
+  width: 100%;
+  padding: 20px;
+  text-transform: capitalize;
+  text-align: center;
+}
+  .footer-text{
   
-  :-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color:white;
-    opacity: 1; /* Firefox */
-    text-align: center;
-    text-transform: capitalize;
-    font-size: larger;
+  opacity: 0.8;
+  font-family: 'Rubik', sans-serif;
+  font-size: 2rem;
+}
+.footer-text::before{
+  content: '©';
+}
+.selected{
+   background-color: #606c76;
+  border-color: #606c76;
+  color: #fff;
+  outline: 0;
+}
+ .card-icon{
+    display: inline-block;
   }
-  
-  ::-ms-input-placeholder { /* Microsoft Edge */
-    color:white;
-    opacity: 1; /* Firefox */
-    text-align: center;
-    text-transform: capitalize;
-    font-size: larger;
+/************************************************************ Large devices only ***********************************************************/
+
+@media (min-width: 1200px) {
+  .intro-card{
+    min-height: 100vh;
   }
+
+}
+
+/******************************************************************Medium devices only********************************************* **********/
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .caption {
+    bottom: 60%;
+  }
+  .footer-text{
+  font-family: 'Rubik', sans-serif;
+  font-size: 3rem;
+}
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .caption {
+    font-size: 2.5rem;
+    bottom: 45%;
+  }
+}
+
+/* extra small devices */
+@media (max-width: 767px) {
+  .intro-card {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .card-icon{
+    display: flex;
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+  }
+  .footer-text{
+  font-family: 'Rubik', sans-serif;
+  font-size: 1rem;
+}
+  .intro-card-title {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  .intro-card-title::before {
+    margin-right: 0px;
+  }
+  .intro-card {
+    padding: 12px;
+  }
+  .caption {
+    bottom: 10%;
+    font-size: 2rem;
+  }
+}
+
+/************************************************************************* Very Extra small devices only *********************************************/
+@media (max-width: 520px) {
+  .caption {
+    bottom: 15%;
+  }
+}
+
+@media (max-width: 380px) {
+  .caption {
+    font-size: 1.5rem;
+  }
+}
