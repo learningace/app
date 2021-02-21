@@ -14,10 +14,9 @@ export class AppComponent {
   constructor(
     private title: SetTitleService,
     private connectionService: ConnectionService,
-    private snackbar: SnackbarService
+    private snackbar: SnackbarService,
+   
   ) {
-    this.title.setTitle('LearningAce | Home ');
-    
   }
 
   ngOnInit() {

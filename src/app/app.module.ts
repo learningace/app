@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
- 
+import { AngularFireModule } from '@angular/fire'; 
+import { environment } from './../environments/environment';
+
 import { QuicklinkModule } from 'ngx-quicklink';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +21,7 @@ import { SnackbarModule } from 'ngx-snackbar';
     LoadingBarRouterModule,
     LoadingBarHttpClientModule,
     QuicklinkModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
     SnackbarModule.forRoot(),
   ],
   providers: [],

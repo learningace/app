@@ -1,184 +1,303 @@
-<div class="ui-container d-flex justify-content-center w-100 h-100">
-  <div class="ui-card-4 ui-padding-24 ui-round ui-white">
-    <header class="ui-container d-flex justify-content-center">
-      <a routerLink="/">
-        <img src="https://learningace.github.io/app/assets/logo4.png" alt="LearningAce" />
+<div class="bg-register">
+  <div class="display-flex justify-content-center align-items-center" *ngIf='backdrop'>
+    <div
+      class="box-shadow-4"
+      style="background-color: white; margin-top: 20px; margin-bottom: 20px"
+    >
+      <div class="progress-line" *ngIf='loading'></div>
+      <div style="padding-top: 20px"></div>
+      <a class="display-flex justify-content-center w-100" routerLink="/">
+        <img
+          src="https://learningace.github.io/app/assets/logo.png"
+          alt="LearningAce"
+        />
       </a>
-      <label class="ui-xlarge">Create An Account</label>
-      <div style="margin-bottom: 10px;"></div>
-    </header>
-
-    <div class="ui-container">
-      <form
-        (ngSubmit)="register(RGform)"
-        #RGform="ngForm"
+      <div
+        class="display-flex justify-content-center w-100 font-montserrat font-xx-large"
       >
-      <div class="name-block">
-        <div class="first-name">
-          <label>
-            First Name <sup class="ui-text-red">*</sup></label>
-          <input
-            class="ui-input"
-            type="text"
-            name="first_name"
-            required
-            ngModel
-            #first_name="ngModel"
-            pattern="[A-Za-z ]{1,32}"
-          />
-          <div
-            class="ui-text-red ui-small"
-            *ngIf="first_name.errors?.required && first_name.touched">
-            First name is required
-          </div>
-          <div 
-            class="ui-text-red ui-small"
-            *ngIf="first_name.errors?.pattern && first_name.touched">
-            Name should be letters only and max length is 32 characters
-          </div>
-        </div>
-
-        <div class="last-name">
-          <label>
-            Last Name</label>
-          <input
-            class="ui-input"
-            type="text"
-            name="last_name"
-            ngModel
-            #last_name="ngModel"
-            
-          />
-        </div>
+        Create An Account
       </div>
-
-        <div style="margin-bottom: 10px;"></div>
-
-        <div>
-          <label>
-            Enter Your Email <sup class="ui-text-red">*</sup></label>
-          <input
-            class="ui-input"
-            type="email"
-            name="email"
-            required
-            ngModel
-            #email="ngModel"
-            email
-          />
-          <div
-            class="ui-text-red ui-small"
-            *ngIf="email.errors?.required && email.touched">
-            Email is required
-          </div>
-          <div 
-            class="ui-text-red ui-small"
-            *ngIf="email.errors?.email && email.touched">
-            Please enter a valid Email address
-          </div>
-        </div>
-        <div style="margin-bottom: 10px;"></div>
-
-      <div class="name-block">
-        <div class="first-name">
-          <label>
-            Choose a password <sup class="ui-text-red">*</sup></label>
-          <input
-            required
-            name="password"
-            class="ui-input"
-            [type]="hide ? 'password' : 'text'"
-            ngModel
-            #password="ngModel"
-            minlength="6"
-            (input)="checkPassword(password.value, confirm_password.value)"
-          />
-          <div
-            class="ui-text-red ui-small"
-            *ngIf="password.errors?.required && password.touched">
-            Password is required
-          </div>
-          <div 
-            class="ui-text-red ui-small"
-            *ngIf="password.errors?.minlength && password.touched">
-            Password should be atleast 6 characters
-          </div>
-        </div>
-
-        <div class="last-name">
-          <label>
-            Confirm your password <sup class="ui-text-red">*</sup></label>
-          <input
-            required
-            name="confirm_password"
-            class="ui-input"
-            [type]="hide ? 'password' : 'text'"
-            ngModel
-            #confirm_password="ngModel"
-            minlength="6"
-            (input)="checkPassword(password.value, confirm_password.value)"
-          />
-          <div
-            class="ui-text-red ui-small"
-            *ngIf="confirm_password.errors?.required && confirm_password.touched">
-            Confirm Password is required
-          </div>
-          <div 
-            class="ui-text-red ui-small"
-            *ngIf="confirm_password.errors?.minlength && confirm_password.touched">
-            Password should be atleast 6 characters
-          </div>
-          <div 
-            class="ui-text-red ui-small"
-            *ngIf="confrmPasswordError && confirm_password.touched">
-            Passwords don't match
-          </div>
-        </div>
-      </div>
-      
-      <div style="margin-bottom: 10px;"></div>
-      <input class="ui-check"
-        style="margin-right: 10px;"
-        (change)="hide = !hide" 
-        type="checkbox"> Show Password
-      </form>
-    </div>
-    <br>
-    <footer class="ui-container ui-footer">
-      <button
-        class="ui-btn ui-ripple ui-round ui-text-primary" 
-        (click)="onSwitch()"
-        title="Sign In to your account">
-        Sign In Instead 
-      </button>
-      
-      <button
-        (click)="register(RGform)"
-        class="ui-btn ui-color-primary pull-right ui-round ui-text-white" 
-        
-        type="submit" 
+      <div style="margin-bottom: 20px"></div>
+      <div class="container" [ngClass]="{'back-drop':loading}">
+        <form
+          class="form-style"
+          style="width: 500px"
+          (ngSubmit)="register(RGform)"
+          #RGform="ngForm"
         >
-        Register
-      </button>
-    </footer>
+          <div class="row">
+            <div class="col-md-6">
+              <!-- Name  Field -->
+              <div class="group">
+                <input
+                  [ngClass]="{
+                    'border-red': first_name.errors && first_name.touched
+                  }"
+                  type="text"
+                  name="first_name"
+                  required
+                  ngModel
+                  #first_name="ngModel"
+                  pattern="[A-Za-z ]{1,32}"
+                />
+                <label
+                  ><i class="fas fa-user-circle mr-2"></i> First Name
+                  <sup style="color: red">*</sup></label
+                >
+                <span class="highlight"></span>
+                <span
+                  [ngClass]="{
+                    'border-red': first_name.errors && first_name.touched
+                  }"
+                  class="bar"
+                ></span>
+                <!-- First name Error text blocks -->
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="first_name.errors?.required && first_name.touched"
+                >
+                  First name is required
+                </div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="first_name.errors?.pattern && first_name.touched"
+                >
+                  Name should be letters only and max length is 32 characters
+                </div>
+              </div>
+            </div>
+            <!-- Last Name -->
+            <div class="col-md-6">
+              <div class="group">
+                <input
+                  [ngClass]="{
+                    'border-red': last_name.errors && last_name.touched
+                  }"
+                  type="text"
+                  name="last_name"
+                  ngModel
+                  #last_name="ngModel"
+                  required
+                  pattern="[A-Za-z ]{1,32}"
+                />
+                <label
+                  ><i class="fas fa-user mr-2"></i> Last Name
+                  <sup style="color: red">*</sup></label
+                >
+                <div class="highlight"></div>
+                <div
+                  [ngClass]="{
+                    'border-red': last_name.errors && last_name.touched
+                  }"
+                  class="bar"
+                ></div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="last_name.errors?.required && last_name.touched"
+                >
+                  Last name is required
+                </div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="last_name.errors?.pattern && last_name.touched"
+                >
+                  Name should be letters only and max length is 32 characters
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <input
+              [ngClass]="{ 'border-red': email.errors && email.touched }"
+              type="email"
+              name="email"
+              required
+              ngModel
+              #email="ngModel"
+              email
+            />
+            <label>
+              <i class="fas fa-envelope mr-2"></i> Enter Your Email
+              <sup style="color: red">*</sup></label
+            >
+            <div class="highlight"></div>
+            <div
+              [ngClass]="{ 'border-red': email.errors && email.touched }"
+              class="bar"
+            ></div>
+            <div
+              class="helper-text bg-error"
+              *ngIf="email.errors?.required && email.touched"
+            >
+              Email is required
+            </div>
+            <div
+              class="helper-text bg-error"
+              *ngIf="email.errors?.email && email.touched"
+            >
+              Please enter a valid Email address
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="group">
+                <input
+                  required
+                  [ngClass]="{
+                    'border-red': password.errors && password.touched
+                  }"
+                  name="password"
+                  [type]="hide ? 'password' : 'text'"
+                  ngModel
+                  #password="ngModel"
+                  minlength="6"
+                  (input)="
+                    checkPassword(password.value, confirm_password.value)
+                  "
+                />
+                <label>
+                  <i class="fas fa-unlock-alt mr-2"></i>Choose a password
+                  <sup style="color: red">*</sup></label
+                >
+                <div class="highlight"></div>
+                <div
+                  [ngClass]="{
+                    'border-red': password.errors && password.touched
+                  }"
+                  class="bar"
+                ></div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="password.errors?.required && password.touched"
+                >
+                  Password is required
+                </div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="password.errors?.minlength && password.touched"
+                >
+                  Password should be atleast 6 characters
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="group">
+                <input
+                  [ngClass]="{
+                    'border-red':
+                      confirm_password.errors && confirm_password.touched
+                  }"
+                  required
+                  name="confirm_password"
+                  [type]="hide ? 'password' : 'text'"
+                  ngModel
+                  #confirm_password="ngModel"
+                  minlength="6"
+                  (input)="
+                    checkPassword(password.value, confirm_password.value)
+                  "
+                />
+                <label>
+                  <i class="fas fa-check-circle mr-2"></i> Confirm your password
+                  <sup style="color: red">*</sup></label
+                >
+                <div class="highlight"></div>
+                <div
+                  [ngClass]="{
+                    'border-red':
+                      confirm_password.errors && confirm_password.touched
+                  }"
+                  class="bar"
+                ></div>
+
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="
+                    confirm_password.errors?.required &&
+                    confirm_password.touched
+                  "
+                >
+                  Confirm Password is required
+                </div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="
+                    confirm_password.errors?.minlength &&
+                    confirm_password.touched
+                  "
+                >
+                  Password should be atleast 6 characters
+                </div>
+                <div
+                  class="helper-text bg-error"
+                  *ngIf="confrmPasswordError && confirm_password.touched"
+                >
+                  Passwords don't match
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="select font-montserrat">
+            <select
+              class="select-text"
+              [ngClass]="{
+                'border-red': user_role.errors && user_role.touched
+              }"
+              required
+              ngModel
+              #user_role="ngModel"
+              name="user_role"
+            >
+              <option value="INSTRUCTOR">An Instructor</option>
+              <option value="LEARNER">A Learner</option>
+            </select>
+            <span class="select-highlight"></span>
+            <span
+              class="select-bar"
+              [ngClass]="{
+                'border-red': user_role.errors && user_role.touched
+              }"
+            ></span>
+            <label class="select-label"
+              ><i class="fas fa-user-tag mr-2"></i> Register Me As</label
+            >
+            <div
+              class="helper-text bg-error"
+              *ngIf="user_role.errors?.required && user_role.touched"
+            >
+              Select your role
+            </div>
+          </div>
+          <input
+            style="margin-right: 10px"
+            (change)="hide = !hide"
+            type="checkbox"
+          />
+          <span class="font-montserrat">Show Password</span>
+          <footer class="clearfix mt-3">
+            <button
+              style="float: left; margin: 0px; padding: 0px"
+              class="button button-clear"
+              (click)="onSwitch()"
+              title="Sign In to your account"
+            >
+              Sign In Instead
+            </button>
+
+            <button
+              style="float: right"
+              (click)="register(RGform)"
+              class="button"
+              type="button"
+              [disabled]='RGform.invalid || loading || confrmPasswordError'
+            >
+              Register
+            </button>
+          </footer>
+        </form>
+      </div>
+      <br />
+    </div>
   </div>
-  <div class="ui-container">
-    {{formValue | json}}
-  </div>
-  <ul class="circles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-  </ul>
 </div>
-
-            
- 
-

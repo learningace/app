@@ -1,7 +1,12 @@
+<div class="hasback-drop" *ngIf="backdrop">
+  <span class="font-montseerat font-xx-large"></span>
+</div>
 <div class="bg-login">
   <div
-    class="display-flex justify-content-center vw-100 vh-100 align-items-center">
-    <div class="box-shadow-4" style="background-color: white; width: 500px;">
+    class="display-flex justify-content-center vw-100 vh-100 align-items-center"
+  >
+    <div class="box-shadow-4" style="width: 500px;background-color: white;">
+      <div class="progress-line" *ngIf='loading'></div>
       <div style="padding-top: 20px"></div>
       <a class="display-flex justify-content-center w-100" routerLink="/">
         <img
@@ -9,11 +14,16 @@
           alt="LearningAce"
         />
       </a>
-      <div class="display-flex justify-content-center w-100 font-montserrat font-xx-large">Sign In</div>
+      <div
+        class="display-flex justify-content-center w-100 font-montserrat font-xx-large"
+      >
+        Sign In
+      </div>
       <div style="margin-bottom: 20px"></div>
-<!-- Email  Field -->
+      <!-- Email  Field -->
       <div class="container">
-        <form class="form-style" (ngSubmit)="login(LGform)" #LGform="ngForm">
+        <form class="form-style" (ngSubmit)="login(LGform)" #LGform="ngForm"
+        [ngClass]='{"back-drop":loading}'>
           <div class="group">
             <input
               [ngClass]="{ 'border-red': email.errors && email.touched }"
@@ -22,83 +32,116 @@
               required
               ngModel
               #email="ngModel"
-              email/>
-            <label for="name"> <i class="fas fa-envelope mr-2"></i> Enter Your Email</label>
+              email
+            />
+            <label for="name">
+              <i class="fas fa-envelope mr-2"></i> Enter Your Email</label
+            >
             <span class="highlight"></span>
-            <span [ngClass]="{ 'border-red': email.errors && email.touched }" class="bar"></span>
+            <span
+              [ngClass]="{ 'border-red': email.errors && email.touched }"
+              class="bar"
+            ></span>
             <span
               class="helper-text bg-error"
-              *ngIf="email.errors?.email && password.touched">
+              *ngIf="email.errors?.email && password.touched"
+            >
               Please enter a valid Email address
             </span>
             <span
               class="helper-text bg-error"
-              *ngIf="email.errors?.required && email.touched">
+              *ngIf="email.errors?.required && email.touched"
+            >
               Email is required
             </span>
           </div>
-<!-- Password Field -->
+          <!-- Password Field -->
           <div class="group">
             <input
               required
               name="password"
-              [ngClass]="{ 'border-red': password.errors && password.touched }"
+              [ngClass]="{
+                'border-red': password.errors && password.touched
+              }"
               [type]="hide ? 'password' : 'text'"
               ngModel
               #password="ngModel"
-              minlength="6"/>
-            <label for="name"> <i class="fas fa-unlock-alt mr-2"></i> Password</label>
+              minlength="6"
+            />
+            <label for="name">
+              <i class="fas fa-unlock-alt mr-2"></i> Password</label
+            >
             <span class="highlight"></span>
-            <span [ngClass]="{ 'border-red': password.errors && password.touched }" class="bar"></span>
+            <span
+              [ngClass]="{
+                'border-red': password.errors && password.touched
+              }"
+              class="bar"
+            ></span>
             <div
               class="helper-text bg-error"
-              *ngIf="password.errors?.required && password.touched">
+              *ngIf="password.errors?.required && password.touched"
+            >
               Password is required
             </div>
             <div
               class="helper-text bg-error"
-              *ngIf="password.errors?.minlength && password.touched">
+              *ngIf="password.errors?.minlength && password.touched"
+            >
               Password should be atleast 6 characters
             </div>
           </div>
           <div style="margin-bottom: 20px"></div>
-<!-- Show password Checkbox -->
+          <!-- Show password Checkbox -->
           <input
             style="margin-right: 10px"
             (change)="hide = !hide"
-            type="checkbox"/>
-            <span class="font-montserrat">Show Password</span> 
-<!-- Forgot Password button   -->
+            type="checkbox"
+          />
+          <span class="font-montserrat">Show Password</span>
+          <!-- Forgot Password button   -->
           <button
-            style="float: right; margin-bottom: 20px; margin-top: -10px;"
+            type="button"
+            style="float: right; margin-bottom: 20px; margin-top: -10px"
             class="button button-clear"
             [disabled]="email.errors?.required"
-            (click)="onForgotPassword()">
+            (click)="onForgotPassword(LGform)"
+          >
             Forgot Password?
           </button>
         </form>
-      </div> <!-- Form container div-->
+      </div>
+      <!-- Form container div-->
       <br />
-<!-- Action Footer -->
+      <!-- Action Footer -->
       <footer class="container mb-4">
+        <!-- Switch Button -->
         <button
-          style="line-height: 3px;" 
+          type="button"
+          style="line-height: 10px; float: left"
           class="button button-clear"
           title="Create An Account on LearningAce"
-          (click)="onSwitch()">
-          Not registered yet?<p></p>
+          (click)="onSwitch()"
+        >
+          Not registered yet?
+          <p></p>
           Create an account here
-        </button> <!-- Switch Button -->
+        </button>
+        <!-- Login Submit Button -->
         <button
-           style="float: right;"
+          type="submit"
+          style="float: right"
           (click)="login(LGform)"
           class="button"
-          type="submit"
-          [disabled]="LGform.invalid || submitDisabled">
-          <span class="loader" *ngIf="loading"></span>
-          <Span *ngIf="!loading">Sign In</Span>
-        </button> <!-- Login Submit Button -->
+          [disabled]="LGform.invalid || submitDisabled || loading"
+        >
+          <Span>Sign In</Span>
+        </button>
       </footer>
-    </div> <!-- Form Box-->
-  </div> <!-- Form Box Wrapper Div-->
-</div> <!-- login Backgroung image div-->
+      <br /><br />
+    </div>
+    <!-- Form Box-->
+  </div>
+  <!-- Form Box Wrapper Div-->
+</div>
+<!-- login Backgroung image div-->
