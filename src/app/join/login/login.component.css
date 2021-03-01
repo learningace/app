@@ -10,9 +10,6 @@
   background-color: white;
   z-index: 9999;
 }
-.hasback-drop::before{
-  content: 'REDIRECTING';
-}
 
 .bg-login {
   background-image: url(../../../assets/bg-login.jpg);

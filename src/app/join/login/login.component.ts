@@ -6,6 +6,7 @@ import { ActionCodeSettings } from '@firebase/auth-types';
 import { take } from 'rxjs/operators';
 import { AuthenticationService } from './../authentication.service';
 import { SetTitleService } from './../../set-title.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login',
@@ -20,31 +21,32 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private title: SetTitleService,
-    public authentication: AuthenticationService
+    public authentication: AuthenticationService,
+    private spinner: NgxSpinnerService
   ) {}
 
   ngOnInit() {
+    this.spinner.show();
     this.title.setTitle('LearningAce | Sign In');
     this.authentication.appUser$.pipe(take(1)).subscribe((appuser) => {
       if (appuser) {
-        this.authentication.redirectLoggedInTo(appuser.default_role);
+        this.authentication.redirectLoggedInTo(appuser.default_role).finally(()=>{this.spinner.hide()});
       } else {
         this.backdrop = false;
+        this.spinner.hide();
       }
     });
   }
 
-  login(LGform: NgForm) {
-    console.log('Caliing Login...');
+  async login(LGform: NgForm) {
     this.loading = true;
     if (LGform.invalid) {
       return;
     }
     const email = LGform.controls.email.value;
     const password = LGform.controls.password.value;
-    this.authentication.login(email, password).then(() => {
-      this.loading = false;
-    });
+    const err = await this.authentication.login(email, password);
+    if(err == false) this.loading=false;
   }
 
   onSwitch() {
@@ -54,8 +56,8 @@ export class LoginComponent {
   onForgotPassword(LGform: NgForm) {
     const email = LGform.controls.email.value;
     let url: ActionCodeSettings = {
-      url: 'http://localhost:4200/join',
+      url: 'https://learningace.github.io/app/join',
     };
-    this.authentication.sendForgetPasswordLink(email, url);
+    this.authentication.sendForgetPasswordLink(email);
   }
 }

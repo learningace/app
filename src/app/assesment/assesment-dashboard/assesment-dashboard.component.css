@@ -1,0 +1,21 @@
+.height-small{
+    min-height: 300px !important;
+    max-height: 300px !important;
+}
+
+.intro-card-footer{
+    max-height: 100px !important;
+    position: absolute;
+    bottom: 0px;
+}
+.intro-card{
+    position: relative !important;
+    cursor: pointer;
+}
+.intro-card:hover{
+    box-shadow: 0 1px 5px 1px #006089;
+    -webkit-transform:scale(1.05);
+    transform:scale(1.05);
+    -moz-transform:scale(1.05);
+    -o-transform:scale(1.05);
+}

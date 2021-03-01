@@ -10,17 +10,20 @@ import { SnackbarService } from 'ngx-snackbar';
   styleUrls: ['./learner-dashboard.component.css'],
 })
 export class LearnerDashboardComponent implements OnInit {
-  userEmail:String | null='';
+  userEmail: String | null = '';
+  isEmailVerified = true;
   constructor(
     private auth: AuthenticationService,
     private snackbar: SnackbarService,
     private router: Router
-  ) {
-  }
+  ) {}
   ngOnInit(): void {
-    this.auth.user$.pipe(take(1)).subscribe((data)=>{
-      if(data){
-        this.userEmail = data.email;
+    this.auth.user$.pipe(take(1)).subscribe((user) => {
+      if (user) {
+        this.userEmail = user.email;
+        if (user.emailVerified == false) {
+          this.isEmailVerified = false;
+        }
       }
     });
   }

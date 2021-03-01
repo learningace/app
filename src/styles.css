@@ -61,7 +61,9 @@ input[type="submit"] {
   text-transform: uppercase;
   white-space: nowrap;
 }
-
+.text-center{
+  text-align: center !important;
+}
 .button:focus,
 .button:hover,
 button:focus,
@@ -176,8 +178,7 @@ input[type="submit"].button-clear[disabled]:focus,
 input[type="submit"].button-clear[disabled]:hover {
   color: #9b4dca;
 }
-@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
 .hidden-lg {
   display: none;
 }
@@ -225,6 +226,7 @@ li a:hover {
   display: flex;
   justify-content: center;
   width: 100%;
+ 
 }
 .nav-item,
 .logo {
@@ -424,6 +426,9 @@ li a:hover {
 .display-block {
   display: block !important;
 }
+.display-inline-block{
+  display: inline-block !important;
+}
 .w-100 {
   width: 100% !important;
 }
@@ -437,22 +442,31 @@ li a:hover {
   height: 100vh !important;
 }
 .font-sm{
-  font-size: small;
+  font-size: small !important;
+}
+.font-smaller{
+  font-size: smaller !important;
+}
+.font-x-smaller{
+  font-size: x-small !important;
+}
+.font-xx-smaller{
+  font-size: xx-small !important;
 }
 .font-medium{
-  font-size: medium;
+  font-size: medium !important;
 }
 .font-larger{
-  font-size: large;
+  font-size: large !important;
 }
 .font-larger{
-  font-size: larger;
+  font-size: larger!important;
 }
 .font-x-large{
-  font-size: x-large;
+  font-size: x-large!important;
 }
 .font-xx-large{
-  font-size: xx-large;
+  font-size: xx-large !important;
 }
 .form-style .group 			  { 
   position: relative;

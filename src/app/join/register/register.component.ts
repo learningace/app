@@ -1,8 +1,8 @@
-import { AuthenticationService } from './../authentication.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { take } from "rxjs/operators";
+import { AuthenticationService } from './../authentication.service';
 import { SetTitleService } from './../../set-title.service';
 
 @Component({
@@ -18,7 +18,7 @@ export class RegisterComponent {
   constructor(
     private title: SetTitleService,
     private router: Router,
-    private auth: AuthenticationService
+    private auth: AuthenticationService,
   ) {
     this.title.setTitle('LearningAce | Register');
   }
@@ -34,10 +34,17 @@ export class RegisterComponent {
   }
 
   register(RGform: NgForm) {
+    if(RGform.invalid){
+      return;
+    }
+    if(!window.navigator.onLine){
+      this.auth.commonService.snackbarError('You are offline 😕. Check your internet connection and then tryb again');
+      return;
+    }
     this.loading = true;
     const email = RGform.controls.email.value;
     const displayName =
-      RGform.controls.first_name.value + ' ' + RGform.controls.last_name.value;
+    RGform.controls.first_name.value + ' ' + RGform.controls.last_name.value;
     const password = RGform.controls.password.value;
     const role = RGform.controls.user_role.value;
     this.auth.registerNewUser(displayName, email, password, role).finally(()=>this.loading=false);

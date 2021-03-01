@@ -1,2 +1,8 @@
-<p>instructor-dashboard works!</p>
-<button class="button" (click)='signOut()'>Sign Out</button>
+<div class="container">
+  <div *ngIf="!isEmailVerified" style="color: red">
+    We need to verify your email address
+  </div>
+  <p>instructor-dashboard works!</p>
+  <button class="button button-clear" (click)='onAssesment()'>Assesment</button>
+  <button class="button button-clear" (click)="signOut()">Sign Out</button>
+</div>

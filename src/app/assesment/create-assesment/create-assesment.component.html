@@ -1,0 +1,47 @@
+<div class="body" (click)="qblock.hideQuestionBlock()">
+  <br />
+  <div class="container">
+    <div
+      class="assesment-header a-block top-stripe"
+      [ngClass]="{ onFocus: isSelected }"
+    >
+      <div class="assesment-title">
+        <input
+          type="text"
+          name="assesment-title"
+          class="assesment-text-input font-montserrat font-xx-large"
+          value="Untitled Assesment"
+          #inputElement
+          (focus)="OnInputFocus(inputElement)"
+          (blur)="onFocusLeave()"
+        />
+      </div>
+      <div class="assesment-description">
+        <input
+          type="text"
+          name="assesment-title"
+          class="assesment-text-input font-montserrat font-medium"
+          placeholder="Assesment Description"
+          #inputElement2
+          (focus)="OnInputFocus(inputElement2)"
+          (blur)="onFocusLeave()"
+        />
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <ng-template #QuestionBlockContainer></ng-template>
+  </div>
+</div>
+<div class="footer-toolbar fixed">
+  <table>
+    <tr>
+      <td>
+        <button class="button button-clear" (click)="AddQuestion()">
+          Add a Question
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

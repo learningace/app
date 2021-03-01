@@ -1,0 +1,57 @@
+<!-- <div class="question-block-wrapper">
+  <div class="qustion-block">
+    <div class="question-block-top-section">
+      <input type="text" name="" id="">
+    </div>
+    <div class="question-block-body">
+      <ng-container *ngComponentOutlet="componentOutlet"></ng-container>
+    </div>
+    <div class="question-block-footer">
+        <button class="button button-clear" (click)='ChangeKind()'>Duplicate</button>
+        <button class="button button-clear">Delete</button>
+        <button class="button button-clear">Required</button>
+        <button class="button button-clear">Menu</button>
+    </div>
+  </div>
+</div> -->
+<div
+  class="a-block"
+  [ngClass]="{ onFocus: isSelected }"
+  (click)="onFocus($event, element)"
+>
+  <div class="row">
+    <div class="col-6">
+      <div class="question-block-top-section">
+        <input
+          #element
+          type="text"
+          class="text-input font-montserrat font-medium"
+          placeholder="Question"
+        />
+      </div>
+    </div>
+    <div class="col-2">
+      <button *ngIf="isSelected" class="button button-clear">Add Image</button>
+    </div>
+    <div class="col-md-4">
+      <div class="select font-montserrat" *ngIf="isSelected">
+        <select class="select-text" (change)="ChangeKind($event)">
+          <option value="MCQ">Multiple Choice</option>
+          <option value="LA">Long Answer</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="qustion-block">
+    <div class="question-block-body">
+      <ng-container *ngComponentOutlet="componentOutlet"></ng-container>
+    </div>
+    <div class="question-block-footer" *ngIf="isSelected">
+      <button class="button button-clear">Duplicate</button>
+      <button class="button button-clear" (click)="onDeleteMe()">Delete</button>
+      <button class="button button-clear">Required</button>
+      <!-- <button class="button button-clear" (click)='onMoveMeUp()'>Move Up</button>
+      <button class="button button-clear" (click)='onMoveMeDown()'>Move Down</button> -->
+    </div>
+  </div>
+</div>
