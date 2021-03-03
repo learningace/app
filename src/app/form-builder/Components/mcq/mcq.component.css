@@ -1,0 +1,14 @@
+.close-icon:hover{
+    cursor: pointer;
+    color: red;
+}
+.add-other:focus{
+    border-bottom: none !important;
+}
+.add-option{
+    color: gray;
+    opacity: 0.7;
+    padding: 0px;
+    margin:0px;
+    text-transform: capitalize !important;
+}

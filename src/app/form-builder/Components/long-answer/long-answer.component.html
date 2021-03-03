@@ -1,1 +1,18 @@
-<p>long-answer works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <div class="paragraph font-rubik">Paragraph Answer Text</div>
+    </div>
+    <div class="col-2">
+      <input
+        class="text-input"
+        type="text"
+        (input)="onWordLimit($event)"
+        style="width: 85%"
+        placeholder="Word Limit"
+        pattern="[0-9]+"
+      />
+      <small class="word-limit-helper-text" >Enter a decimal value</small>
+    </div>
+  </div>
+</div>

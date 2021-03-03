@@ -17,39 +17,108 @@
 <div
   class="a-block"
   [ngClass]="{ onFocus: isSelected }"
-  (click)="onFocus($event, element)"
+  (click)="onFocus($event)"
 >
   <div class="row">
-    <div class="col-6">
+    <div class="col-lg-7 col-11">
       <div class="question-block-top-section">
         <input
-          #element
           type="text"
           class="text-input font-montserrat font-medium"
           placeholder="Question"
         />
       </div>
     </div>
-    <div class="col-2">
-      <button *ngIf="isSelected" class="button button-clear">Add Image</button>
+    <div class="col-lg-1 col-1 d-flex justify-content-center">
+      <i class="fas fa-image fa-2x mt-3 img-button" *ngIf="isSelected"></i>
     </div>
-    <div class="col-md-4">
-      <div class="select font-montserrat" *ngIf="isSelected">
-        <select class="select-text" (change)="ChangeKind($event)">
-          <option value="MCQ">Multiple Choice</option>
-          <option value="LA">Long Answer</option>
-        </select>
-      </div>
+    <div class="col-lg-4 col-xs-12">
+      <nav role="navigation" *ngIf="isSelected">
+        <div class="dropdown-text font-rubik" (click)='showDropdown(dropdown)'>
+          <div [innerHTML]="selected"></div>
+          <i class="fas fa-chevron-down mt-1 ml-5" style='float:right !important;'></i>
+        </div>
+        <div class="dropdown" #dropdown>
+          <ul>
+            <li (click)="ChangeKind('MCQ',dropdown)">
+                <img
+                  class="mr-2"
+                  src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v1.png"
+                  width="20px"
+                />
+                Multiple Choice
+              </li>
+              <li (click)="ChangeKind('CHK',dropdown)">
+                <i class="far fa-check-square mr-2 fa-1x"></i>
+                Checkboxes
+              </li>
+
+              <li (click)="ChangeKind('DRD',dropdown)">
+                <i class="fas fa-chevron-circle-down mr-2 fa-1x"></i>
+                Drop Down
+              </li>
+
+              <li (click)="ChangeKind('LA',dropdown)">
+                <i class="fas fa-align-left mr-2" style="font-size: 1.2rem"></i>
+                Paragraph Text
+              </li>
+          </ul>
+        </div>
+        <!-- <ul class="font-montserrat">
+          <li>
+            <span [innerHTML]="selected" class="font-montserrat" ></span
+            ><i class="fas fa-chevron-down mt-1" style="float: right"></i>
+            <ul class="dropdown" #dropdown>
+              <li (click)="ChangeKind('MCQ',dropdown)">
+                <img
+                  class="mr-2"
+                  src="https://img.icons8.com/material/24/000000/unchecked-radio-button--v1.png"
+                  width="20px"
+                />
+                Multiple Choice
+              </li>
+              <li (click)="ChangeKind('CHK',dropdown)">
+                <i class="far fa-check-square mr-2 fa-1x"></i>
+                Checkboxes
+              </li>
+
+              <li (click)="ChangeKind('DRD',dropdown)">
+                <i class="fas fa-chevron-circle-down mr-2 fa-1x"></i>
+                Drop Down
+              </li>
+
+              <li (click)="ChangeKind('LA',dropdown)">
+                <i class="fas fa-align-left mr-2" style="font-size: 1.2rem"></i>
+                Paragraph Text
+              </li>
+            </ul>
+          </li>
+        </ul> -->
+      </nav>
     </div>
   </div>
   <div class="qustion-block">
     <div class="question-block-body">
-      <ng-container *ngComponentOutlet="componentOutlet"></ng-container>
+      <ng-container *ngComponentOutlet="componentOutlet" context:myContext></ng-container>
     </div>
-    <div class="question-block-footer" *ngIf="isSelected">
-      <button class="button button-clear">Duplicate</button>
-      <button class="button button-clear" (click)="onDeleteMe()">Delete</button>
-      <button class="button button-clear">Required</button>
+    <hr style="color: lightgray" *ngIf="isSelected" />
+    <div
+      class="question-block-footer d-flex justify-content-end"
+      *ngIf="isSelected"
+    >
+      <button class="button button-clear color-gray" title="Duplicate"> 
+        <i class="fas fa-clone fa-2x" aria-label="Duplicate" role="img"></i>
+      </button>
+      <button class="button button-clear color-gray" (click)="onDeleteMe()" style='border-right:1px dotted gray; border-radius: 0px;'>
+        <i class="fas fa-2x fa-trash-alt"></i>
+      </button >
+      <div style='vertical-align:middle; margin-top:6px; margin-left: 20px;'>
+        <span class="font-montserrat mr-2">Required</span><label class="switch">
+        <input type="checkbox" checked />
+        <span class="slider round"></span>
+      </label>
+      </div>
+      
       <!-- <button class="button button-clear" (click)='onMoveMeUp()'>Move Up</button>
       <button class="button button-clear" (click)='onMoveMeDown()'>Move Down</button> -->
     </div>

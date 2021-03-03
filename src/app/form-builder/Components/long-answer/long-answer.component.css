@@ -1,0 +1,25 @@
+.paragraph{
+    padding-bottom: 20px;
+    border-bottom: 1px dotted gray;
+}
+.text-input{
+    padding-left: 0px !important;
+    margin-left:0px !important;
+    border-bottom: 2px solid rgb(104, 58, 183) !important;
+}
+.text-input::placeholder{
+    padding-left:0px !important;
+    margin-left: 0px !important;
+    font-size: small;
+}
+.word-limit-helper-text{
+    display: none;
+}
+.text-input:invalid ~ .word-limit-helper-text{
+    display: block;
+    color: red;
+    font-size: small;
+}
+.text-input:invalid {
+ border-bottom: 2px solid red !important;
+}

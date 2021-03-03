@@ -7,6 +7,7 @@ import {
   ComponentRef,
   ViewRef
 } from '@angular/core';
+import { McqComponent } from './../../form-builder/Components/mcq/mcq.component';
 import { QuestionBlockService } from '../services/question-block.service';
 import { QuestionBlockComponent } from './../../form-builder/Components/question-block/question-block.component';
 
@@ -40,6 +41,7 @@ export class CreateAssesmentComponent implements OnInit {
     this.qblock.updateViewContainerRef(this.ref);
     this.viewRef = this.componentRef.hostView;
     this.componentRef.instance.myindex = this.ref.indexOf(this.viewRef);
+    this.componentRef.instance.componentOutlet = McqComponent;
     this.componentRef.instance.myView = this.viewRef;
   }
   onFocusLeave(){

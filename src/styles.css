@@ -38,6 +38,20 @@
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
+input[type='text'].text-input{
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid rgba(104, 58, 183, 0);
+  transition: all 0.7s linear;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+
+}
+input[type='text'].text-input:focus{
+  outline: none;
+  border-bottom: 2px solid rgb(104, 58, 183);
+}
 .button,
 button,
 input[type="button"],

@@ -1,1 +1,83 @@
-<input type="text" name="question">
+<div #optionContainer>
+    {{other}}
+  <div
+    class="choice-group"
+    class="d-flex justify-content-center m-2"
+    *ngFor="let item of options; trackBy: trackByFn"
+    #refVar
+  >
+
+    <div class="choice-icon">
+      <img
+        *ngIf="choiceType === 'MCQ'"
+        width="20px"
+        src="https://img.icons8.com/material/48/000000/unchecked-radio-button--v2.png"
+      />
+      <i
+        *ngIf="choiceType === 'CHK'"
+        class="far fa-check-square font-x-large"
+      ></i>
+      <i
+        *ngIf="choiceType === 'DRD'"
+        class="fas fa-chevron-circle-down font-x-large"
+      ></i>
+    </div>
+
+    <input
+      type="text"
+      class="text-input font-large font-rubik"
+      #inputVar
+      (blur)="checkIfEmpty(inputVar)"
+    />
+
+    <div class="close-icon" (click)="deleteOption(refVar)" *ngIf="!hideDelete">
+      <i class="fas fa-times font-x-large"></i>
+    </div>
+  </div>
+  <!-- Other option -->
+  <div
+    class="choice-group"
+    class="d-flex justify-content-start m-2"
+    #otherVar
+    *ngIf='other'
+  >
+    <div class="choice-icon">
+      <img
+        *ngIf="choiceType === 'MCQ'"
+        width="20px"
+        src="https://img.icons8.com/material/48/000000/unchecked-radio-button--v2.png"
+      />
+      <i
+        *ngIf="choiceType === 'CHK'"
+        class="far fa-check-square font-x-large"
+      ></i>
+      <i
+        *ngIf="choiceType === 'DRD'"
+        class="fas fa-chevron-circle-down font-x-large"
+      ></i>
+    </div>
+
+    <input
+      type="text"
+      class="text-input font-large font-rubik add-other"
+      readonly
+      placeholder='Other...'
+    />
+
+    <div class="close-icon" (click)="deleteOther(otherVar)" *ngIf="!hideDelete">
+      <i class="fas fa-times font-x-large"></i>
+    </div>
+  </div>
+   <button class="button button-clear add-option" (click)="addOption()">
+      Add Option
+    </button>
+    <span *ngIf='!other'>
+      or<button
+      class="button button-clear ml-2"
+      style="margin: 0px; padding: 0px; text-transform: capitalize !important"
+      (click)="addOther()"
+    >
+      add "Other"
+    </button>
+    </span>
+</div>
