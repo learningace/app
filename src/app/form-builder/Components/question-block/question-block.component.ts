@@ -10,7 +10,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./question-block.component.css'],
 })
 export class QuestionBlockComponent implements OnInit, OnDestroy {
-  myContext = { $implicit: true, required: true };
   componentOutlet;
   isSelected = false;
   myindex!: number;

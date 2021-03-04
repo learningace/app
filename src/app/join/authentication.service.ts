@@ -7,7 +7,6 @@ import { Observable, of } from 'rxjs';
 import { User } from '@firebase/auth-types';
 import { map, take, switchMap } from 'rxjs/operators';
 import { CommonService } from './../shared-module/services/common.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 
 @Injectable({ providedIn: 'root' })
 export class AuthenticationService {
@@ -20,7 +19,6 @@ export class AuthenticationService {
     private firestore: AngularFirestore,
     public commonService: CommonService,
     private router: Router,
-    private spinner: NgxSpinnerService
   ) {
     this.user$ = firebaseAuthentication.authState;
     this.isLoggedIn$ = firebaseAuthentication.authState.pipe(

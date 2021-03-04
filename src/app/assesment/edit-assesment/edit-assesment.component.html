@@ -1,1 +1,49 @@
-<p>edit-assesment works!</p>
+<div *ngIf="dataLoaded">
+  <br />
+  <div class="container">
+    <div
+      class="assesment-header a-block top-stripe"
+      [ngClass]="{ onFocus: isSelected }"
+    >
+      <div class="assesment-title">
+        <input
+          type="text"
+          name="assesment-title"
+          class="assesment-text-input font-montserrat font-xx-large"
+          value="{{ metadata.title }}"
+          #inputElement
+          (focus)="OnInputFocus(inputElement)"
+          (blur)="onFocusLeave()"
+        />
+      </div>
+      <div class="assesment-description">
+        <input
+          type="text"
+          name="assesment-title"
+          class="assesment-text-input font-montserrat font-medium"
+          placeholder="Assesment Description"
+          value="{{ metadata.description }}"
+          #inputElement2
+          (focus)="OnInputFocus(inputElement2)"
+          (blur)="onFocusLeave()"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <ng-template #QuestionBlockContainer></ng-template>
+</div>
+
+<div class="footer-toolbar fixed" *ngIf="dataLoaded">
+  <table>
+    <tr>
+      <td>
+        <button class="button button-clear" (click)="AddQuestion()">
+          Add a Question
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
