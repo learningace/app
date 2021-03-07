@@ -1,12 +1,10 @@
-<div #optionContainer>
-    {{other}}
+<ng-container *ngIf="dataLoaded">
+  {{ other }}
   <div
     class="choice-group"
     class="d-flex justify-content-center m-2"
-    *ngFor="let item of options; trackBy: trackByFn"
-    #refVar
+    *ngFor="let option of myQuestionData.options; index as i; trackBy: identify"
   >
-
     <div class="choice-icon">
       <img
         *ngIf="choiceType === 'MCQ'"
@@ -27,57 +25,22 @@
       type="text"
       class="text-input font-large font-rubik"
       #inputVar
-      (blur)="checkIfEmpty(inputVar)"
+      [value]="option.optionValue"
+      (input)="checkIfDuplicate(inputVar,option.optionId,$event)"
     />
 
-    <div class="close-icon" (click)="deleteOption(refVar)" *ngIf="!hideDelete">
-      <i class="fas fa-times font-x-large"></i>
-    </div>
-  </div>
-  <!-- Other option -->
-  <div
-    class="choice-group"
-    class="d-flex justify-content-start m-2"
-    #otherVar
-    *ngIf='other'
-  >
-    <div class="choice-icon">
-      <img
-        *ngIf="choiceType === 'MCQ'"
-        width="20px"
-        src="https://img.icons8.com/material/48/000000/unchecked-radio-button--v2.png"
-      />
-      <i
-        *ngIf="choiceType === 'CHK'"
-        class="far fa-check-square font-x-large"
-      ></i>
-      <i
-        *ngIf="choiceType === 'DRD'"
-        class="fas fa-chevron-circle-down font-x-large"
-      ></i>
+     <div class='correct-icon' (click)='onUpdateMeAsCorrect(inputVar)'>
+      <i class="fas fa-check-circle font-x-large mr-2" 
+        [ngClass]="{'color-green': option.optionValue == correctValue}"></i>
+     </div> 
+    <div class="close-icon" (click)="deleteOption(i)" *ngIf="showDelete">
+      <i class="fas fa-times font-x-large" ></i>
     </div>
 
-    <input
-      type="text"
-      class="text-input font-large font-rubik add-other"
-      readonly
-      placeholder='Other...'
-    />
-
-    <div class="close-icon" (click)="deleteOther(otherVar)" *ngIf="!hideDelete">
-      <i class="fas fa-times font-x-large"></i>
-    </div>
   </div>
-   <button class="button button-clear add-option" (click)="addOption()">
-      Add Option
-    </button>
-    <span *ngIf='!other'>
-      or<button
-      class="button button-clear ml-2"
-      style="margin: 0px; padding: 0px; text-transform: capitalize !important"
-      (click)="addOther()"
-    >
-      add "Other"
-    </button>
-    </span>
-</div>
+  <button class="button button-clear add-option" (click)="addOption()" *ngIf='!hideAddOption' [disabled]='optionEmpty'>
+    Add Option
+  </button>
+  <small *ngIf='hideAddOption' style="color: red;">Duplicate Options Found</small>
+  <small *ngIf='optionEmpty' style="color: red;">Option Can't be empty</small>
+</ng-container>

@@ -12,6 +12,7 @@ import { SnackbarService } from 'ngx-snackbar';
 export class LearnerDashboardComponent implements OnInit {
   userEmail: String | null = '';
   isEmailVerified = true;
+  displayName : string |null ='';
   constructor(
     private auth: AuthenticationService,
     private snackbar: SnackbarService,
@@ -21,6 +22,7 @@ export class LearnerDashboardComponent implements OnInit {
     this.auth.user$.pipe(take(1)).subscribe((user) => {
       if (user) {
         this.userEmail = user.email;
+        this.displayName = user.displayName;
         if (user.emailVerified == false) {
           this.isEmailVerified = false;
         }

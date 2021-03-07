@@ -6,7 +6,11 @@ import { AssesmentDashboardComponent } from './assesment-dashboard/assesment-das
 import { UserUidResollver } from './services/uid.resolver';
 
 const routes: Routes = [
-  { path: '', component: AssesmentDashboardComponent },
+  {
+    path: '',
+    component: AssesmentDashboardComponent,
+    resolve: { uid: UserUidResollver },
+  },
   { path: 'create', component: CreateAssesmentComponent },
   {
     path: ':id/edit',

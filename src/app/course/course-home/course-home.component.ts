@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { UnsplashPhotoService } from './../../shared-module/services/unsplash-photo.service';
-
-import { MatDialog } from '@angular/material/dialog';
-import { UnsplashToolbarComponent } from './../../shared-module/unsplash-toolbar/unsplash-toolbar.component';
+import { ActivatedRoute } from '@angular/router';
 import { SetTitleService } from './../../set-title.service';
 
 @Component({
@@ -12,21 +8,14 @@ import { SetTitleService } from './../../set-title.service';
   styleUrls: ['./course-home.component.css'],
 })
 export class CourseHomeComponent {
+  courseId;
   constructor(
     private title: SetTitleService,
-    private firestore: AngularFirestore,
-    private unsplash: UnsplashPhotoService,
-    public dialog: MatDialog
+    private activatedRoute : ActivatedRoute
   ) {
+    this.courseId = this.activatedRoute.snapshot.url[0].path;
+    console.log(this.courseId);
     this.title.setTitle('LearningAce | Course');
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(UnsplashToolbarComponent,{
-      hasBackdrop :true
-    });
-     dialogRef.afterClosed().subscribe((result) => {
-       console.log(`Dialog result: ${result}`);
-     });
-  }
 }

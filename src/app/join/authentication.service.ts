@@ -132,14 +132,17 @@ export class AuthenticationService {
       .createUserWithEmailAndPassword(email, password)
       .then((onSuccess) => {
         if (onSuccess) {
+          const emptyCourse:any=[];
           this.firestore
             .doc(`users/${onSuccess.user?.uid}`)
             .set({
               default_role: role,
               email: onSuccess.user?.email,
               uid: onSuccess.user?.uid,
+              display_name:displayName,
+              courses:emptyCourse
             })
-            .then(() => {
+            .then((user) => {
               this.commonService.snackbarSuccess(
                 'Registration Successfull',
                 30000
@@ -147,6 +150,7 @@ export class AuthenticationService {
               this.redirectLoggedInTo(role);
             });
         }
+        onSuccess.user?.updateProfile({displayName});
       })
       .catch((err) => {
         this.errorHandler(err);

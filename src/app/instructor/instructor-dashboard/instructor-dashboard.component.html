@@ -1,8 +1,50 @@
-<div class="container">
-  <div *ngIf="!isEmailVerified" style="color: red">
-    We need to verify your email address
+<div class="sidebar">
+  <a
+    ><button class="button button-clear m-0 p-0" (click)="onAssesment()">
+      Assesment
+    </button></a
+  >
+  <a
+    ><button class="button button-clear m-0 p-0" (click)="onCreateCourse()">
+      Create a coursre
+    </button></a
+  >
+  <a
+    ><button class="button button-clear m-0 p-0" (click)="signOut()">
+      Sign Out
+    </button></a
+  >
+</div>
+<div class="content">
+  <div class="container">
+    <div *ngIf="!isEmailVerified" style="color: red">
+      We need to verify your email address
+    </div>
   </div>
-  <p>instructor-dashboard works!</p>
-  <button class="button button-clear" (click)='onAssesment()'>Assesment</button>
-  <button class="button button-clear" (click)="signOut()">Sign Out</button>
+  <div class="row">
+    <div class="col-12">
+      <h1 style="text-align: center">All Courses</h1>
+      <br />
+      <div class="row">
+        <ng-container *ngIf="dataLoaded">
+          <div class="col-md-4" *ngFor="let course of data.courses" #courseRef
+          (click)='onCourseEdit(course.courseId,$event)'>
+            <div class="intro-card height-small box-shadow-4">
+              <div class="font-xx-large form-title font-montserrat">
+                {{ course.courseName }}
+              </div>
+              <div class="intro-card-footer">
+                <button
+                  class="button button-clear delete-btn"
+                  (click)="onDeleteCourse(course.courseId,courseRef,course.courseName,$event)"
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
 </div>

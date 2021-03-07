@@ -1,3 +1,5 @@
+import { UserUidResollver } from './assesment/services/uid.resolver';
+import { EnrollToCourseComponent } from './enroll-to-course/enroll-to-course.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 
@@ -7,6 +9,7 @@ import { PreventUnauthorizedGuard } from './guards/prevent.unauthorized.guard';
 import { QuicklinkStrategy } from 'ngx-quicklink';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { UnauthorizedGuard } from './guards/unauthorized.guard';
 
 const routes: Routes = [
   // {
@@ -38,6 +41,19 @@ const routes: Routes = [
     loadChildren: () =>
       import('./learner/learner.module').then((m) => m.LearnerModule),
     canLoad: [PreventUnauthorizedGuard, LearnerLoadGuard],
+  },
+  {
+    path: 'assessment',
+    loadChildren: () =>
+      import('./assessment-view/assessment-view.module').then(
+        (m) => m.AssessmentViewModule
+      ),
+  },
+  {
+    path: 'enroll/:id',
+    component: EnrollToCourseComponent,
+    canActivate: [UnauthorizedGuard],
+    resolve: { uid: UserUidResollver },
   },
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: '**', component: NotFoundComponent },

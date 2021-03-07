@@ -898,3 +898,58 @@ input[type="submit"] {
 
 @media (max-width: 380px) {
 }
+
+
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: white;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  border-right: 1px solid lightgray;
+}
+
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+ 
+.sidebar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: rgb(230, 228, 228);
+  color: black;
+  cursor: pointer;
+}
+
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  min-height: 100vh;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-bottom: 1px solid lightgray;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+    border-bottom: 1px solid lightgray;
+  }
+}

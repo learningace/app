@@ -1,0 +1,49 @@
+.height-small{
+    min-height: 250px !important;
+    max-height: 250px !important;
+}
+
+.intro-card-footer{
+    width: 100%;
+    max-height: 100px !important;
+    position: absolute;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 10px;
+    text-align: center;
+}
+.intro-card{
+    position: relative !important;
+    cursor: pointer;
+    margin-bottom: 80px;
+}
+.intro-card .form-title{
+    padding: 20px !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+    height: auto;
+}
+.intro-card:hover{
+    box-shadow: 0 1px 5px 1px #006089;
+    -webkit-transform:scale(1.05);
+    transform:scale(1.05);
+    -moz-transform:scale(1.05);
+    -o-transform:scale(1.05);
+}
+.delete-btn{
+    margin-top: 10px;
+    width: 100% !important;
+    background-color: #ffcccb !important;
+    color: red !important;
+}
+.delete-btn:hover{
+    background-color: gray !important;
+}
+
+@media(max-width:992px){
+    .intro-card-footer{
+    bottom: 20px;
+}
+}

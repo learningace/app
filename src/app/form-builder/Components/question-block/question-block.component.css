@@ -19,6 +19,20 @@
 .top-stripe{
   border-top: 6px solid rgb(104, 58, 183) !important;
 }
+.points:focus{
+  text-align: center;
+  outline: none !important;
+  border: none !important;
+  border-bottom: 1px solid  rgb(104, 58, 183) !important;
+}
+.points{
+  text-align: center;
+  width: 25% !important;
+  outline: none !important;
+  border: none !important;
+  border-bottom: 1px solid  rgb(104, 58, 183) !important;
+}
+
 a {
   text-decoration: none;
 }

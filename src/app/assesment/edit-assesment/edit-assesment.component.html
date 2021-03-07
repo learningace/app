@@ -47,3 +47,10 @@
     </tr>
   </table>
 </div>
+
+<div *ngIf='!formData' class="font-montserrat font-xx-large" 
+  style="background-color: lavender; padding: 20px;color: red; width: 100%; text-align: center;">
+  Oops!! seems like there is no data associated with this form. It may be have been removed
+  <br><br>
+  <button class="button button-clear font-large" (click)='onTakeMeBack()'>Take Me Back</button>
+</div>

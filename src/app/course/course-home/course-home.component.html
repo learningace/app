@@ -42,4 +42,25 @@
   </div>
 </div> -->
 
-<h1>Works</h1>
+<div class="sidebar">
+  <a [routerLink]="['/instructor']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      Back To Dashboard
+    </a>
+
+    <a [routerLink]="['/instructor/course/',courseId]"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      Course Home
+    </a>
+  <a [routerLink]="['/instructor/course/',courseId,'lessons']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      Lessons
+  </a>
+  <a [routerLink]="['/instructor/course/',courseId,'assessments']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      Assessments
+  </a>
+  <a [routerLink]="['/instructor/course/',courseId,'students']"  routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      Students
+  </a>
+  
+</div>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

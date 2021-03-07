@@ -14,8 +14,9 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
 import { SnackbarModule } from 'ngx-snackbar';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { EnrollToCourseComponent } from './enroll-to-course/enroll-to-course.component';
 @NgModule({
-  declarations: [AppComponent, NotFoundComponent, HomeComponent],
+  declarations: [AppComponent, NotFoundComponent, HomeComponent, EnrollToCourseComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

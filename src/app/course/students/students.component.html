@@ -1,0 +1,37 @@
+<ng-container *ngIf='dataLoaded'>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 font-xx-large font-montseerat" style="text-align: center;">
+        Enrolled
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ul class='student-list'>
+          <li *ngFor="let enrolled of enrolled">{{ enrolled.display_name }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 font-xx-large font-montseerat" style="text-align: center;">
+        Un Enrolled
+    </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <ul class='student-list'>
+          <li *ngFor="let unenrolled of unenrolled" class="font-rubik">
+            {{ unenrolled.display_name }}
+            <button class="button"
+                style="float: right;"
+                (click)='onEnroll(unenrolled.uid,unenrolled.email,unenrolled.display_name)'>
+                Enroll
+            </button>
+
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
